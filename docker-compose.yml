@@ -11,9 +11,9 @@ services:
       - MEILI_ENV=production
     restart: unless-stopped
     volumes:
-      - meilisearch_data:/meili_data
+      - ./data/meilisearch:/meili_data
     ports:
-      - "8081:7700"
+      - "9081:7700"
 
   # Optional, but recommended
   redis:
@@ -37,9 +37,9 @@ services:
       - ALLOW_REGISTRATION=true
     restart: unless-stopped
     ports:
-      - "8082:8080"
+      - "9082:8080"
     volumes:
-      - bar_data:/var/www/cocktails/storage/bar-assistant
+      - ./data/bar-assistant:/var/www/cocktails/storage/bar-assistant
 
   salt-rim:
     image: barassistant/salt-rim:v4
@@ -50,4 +50,4 @@ services:
       - MEILISEARCH_URL=$MEILISEARCH_URL
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "9080:8080"
